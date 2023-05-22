@@ -1,0 +1,33 @@
+doctype html
+html
+    head
+        title= `${title}`
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        form(action=`/update-cobj` method="POST" class="form-wrapper")
+            if data.properties.hs_object_id
+                h1 🐶 Update Pet
+            else
+                h1 🐶 Add Pet
+            a(href="/") 🏠 Return to the homepage
+            input(type="hidden" name="id" value=data.properties.hs_object_id)
+            table(class="table")
+                thead
+                    tr
+                        td Name
+                            span(class="required") *
+                        td
+                            input(type="text" name="pet_name" value=data.properties.pet_name placeholder="Enter the Pet Name" required="required" autofocus="autofocus")
+                    tr
+                        td Type
+                            span(class="required") *
+                        td
+                            input(type="text" name="pet_type" value=data.properties.pet_type placeholder="Enter the Pet Type" required="required")
+
+                    tr
+                        td(colspan="2")
+                            if data.properties.hs_object_id
+                                input(type="submit" value="💾 Update Pet")
+                            else
+                                input(type="submit" value="💾 Add Pet")
